@@ -26,14 +26,14 @@ export = Keycloak;
  * Creates a new Keycloak client instance.
  * @param config Path to a JSON config file or a plain config object.
  */
-declare function Keycloak(config?: string|{}): Keycloak.KeycloakInstance;
+declare function Keycloak(config?: string | {}): Keycloak.KeycloakInstance;
 
 declare namespace Keycloak {
-	type KeycloakAdapterName = 'cordova'|'default' | any;
-	type KeycloakOnLoad = 'login-required'|'check-sso';
-	type KeycloakResponseMode = 'query'|'fragment';
-	type KeycloakResponseType = 'code'|'id_token token'|'code id_token token';
-	type KeycloakFlow = 'standard'|'implicit'|'hybrid';
+	type KeycloakAdapterName = 'cordova' | 'default' | any;
+	type KeycloakOnLoad = 'login-required' | 'check-sso';
+	type KeycloakResponseMode = 'query' | 'fragment';
+	type KeycloakResponseType = 'code' | 'id_token token' | 'code id_token token';
+	type KeycloakFlow = 'standard' | 'implicit' | 'hybrid';
 
 	interface KeycloakInitOptions {
 		/**
@@ -49,7 +49,7 @@ declare namespace Keycloak {
 		 * - {function} - allows to provide custom function as adapter.
 		 */
 		adapter?: KeycloakAdapterName;
-		
+
 		/**
 		 * Specifies an action to do on load.
 		 */
@@ -123,7 +123,7 @@ declare namespace Keycloak {
 		 * this option to `'none'`. To always require re-authentication and ignore
 		 * SSO, set this option to `'login'`.
 		 */
-		prompt?: 'none'|'login';
+		prompt?: 'none' | 'login';
 
 		/**
 		 * If value is `'register'` then user is redirected to registration page,
@@ -149,17 +149,17 @@ declare namespace Keycloak {
 		 */
 		idpHint?: string;
 
-	        /**
-		 * Sets the 'ui_locales' query param in compliance with section 3.1.2.1
-                 * of the OIDC 1.0 specification.
-		 */
+		/**
+	 * Sets the 'ui_locales' query param in compliance with section 3.1.2.1
+			 * of the OIDC 1.0 specification.
+	 */
 		locale?: string;
-                
-                /**
-		 * Specifies the desired Keycloak locale for the UI.  This differs from
-                 * the locale param in that it tells the Keycloak server to set a cookie and update
-                 * the user's profile to a new preferred locale.
-		 */
+
+		/**
+ * Specifies the desired Keycloak locale for the UI.  This differs from
+		 * the locale param in that it tells the Keycloak server to set a cookie and update
+		 * the user's profile to a new preferred locale.
+ */
 		kcLocale?: string;
 	}
 
@@ -467,6 +467,11 @@ declare namespace Keycloak {
 		 * callback listener being invoked.
 		 */
 		clearToken(): void;
+
+		/**
+		 * Sets token manually
+		 */
+		setToken(token, refreshToken, idToken, timeLocal): void;
 
 		/**
 		 * Returns true if the token has the given realm role.
